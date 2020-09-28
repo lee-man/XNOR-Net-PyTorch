@@ -94,7 +94,7 @@ if __name__=='__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--cpu', action='store_true',
             help='set if only CPU is available')
-    parser.add_argument('--data', action='store', default='./data/',
+    parser.add_argument('--data', default='/research/dept2/mli/data/cls',
             help='dataset path')
     parser.add_argument('--arch', action='store', default='nin',
             help='the architecture for the network: nin')
@@ -117,11 +117,11 @@ if __name__=='__main__':
         raise Exception\
                 ('Please assign the correct data path with --data <DATA_PATH>')
 
-    trainset = torchvision.datasets.CIFAR10(train=True, download=True) #, transform=transform_train)
+    trainset = torchvision.datasets.CIFAR10(root=args.data, train=True, download=True) #, transform=transform_train)
     trainloader = torch.utils.data.DataLoader(trainset, batch_size=128,
             shuffle=True, num_workers=2)
 
-    testset = torchvision.datasets.CIFAR10(train=False, download=True)
+    testset = torchvision.datasets.CIFAR10(root=args.data, train=False, download=True)
     testloader = torch.utils.data.DataLoader(testset, batch_size=100,
             shuffle=False, num_workers=2)
 
