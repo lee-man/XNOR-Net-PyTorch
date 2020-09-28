@@ -9,9 +9,10 @@ class BinActive(torch.autograd.Function):
     @staticmethod
     def forward(ctx, input):
         ctx.save_for_backward(input)
-        # size = input.size()
+        size = input.size()
+        mean = torch.mean(input.abs(), 1, keepdim=True)
         input = input.sign()
-        return input
+        return input, mean
 
     @staticmethod
     def backward(ctx, grad_output):
