@@ -111,11 +111,11 @@ if __name__=='__main__':
     torch.manual_seed(1)
     torch.cuda.manual_seed(1)
 
-    # prepare the data
-    if not os.path.isfile(args.data+'/train_data'):
-        # check the data path
-        raise Exception\
-                ('Please assign the correct data path with --data <DATA_PATH>')
+    # # prepare the data
+    # if not os.path.isfile(args.data+'/train_data'):
+    #     # check the data path
+    #     raise Exception\
+    #             ('Please assign the correct data path with --data <DATA_PATH>')
 
     trainset = torchvision.datasets.CIFAR10(root=args.data, train=True, download=True) #, transform=transform_train)
     trainloader = torch.utils.data.DataLoader(trainset, batch_size=128,
