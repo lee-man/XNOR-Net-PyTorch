@@ -6,7 +6,7 @@ import sys
 import os
 import torch
 import argparse
-import data
+# import data
 import util
 import torch.nn as nn
 import torch.optim as optim
