@@ -11,6 +11,8 @@ import util
 import torch.nn as nn
 import torch.optim as optim
 
+import torchvision
+
 from models import nin
 from torch.autograd import Variable
 
@@ -24,7 +26,7 @@ def save_state(model, best_acc):
         if 'module' in key:
             state['state_dict'][key.replace('module.', '')] = \
                     state['state_dict'].pop(key)
-    torch.save(state, 'models/nin.pth.tar')
+    torch.save(state, 'models/nin.pth')
 
 def train(epoch):
     model.train()
@@ -115,11 +117,11 @@ if __name__=='__main__':
         raise Exception\
                 ('Please assign the correct data path with --data <DATA_PATH>')
 
-    trainset = data.dataset(root=args.data, train=True)
+    trainset = torchvision.datasets.CIFAR10(train=True, download=True) #, transform=transform_train)
     trainloader = torch.utils.data.DataLoader(trainset, batch_size=128,
             shuffle=True, num_workers=2)
 
-    testset = data.dataset(root=args.data, train=False)
+    testset = torchvision.datasets.CIFAR10(train=False, download=True)
     testloader = torch.utils.data.DataLoader(testset, batch_size=100,
             shuffle=False, num_workers=2)
 
