@@ -15,7 +15,7 @@ class BinActive(torch.autograd.Function):
         return input, mean
 
     @staticmethod
-    def backward(ctx, grad_output):
+    def backward(ctx, grad_output, grad_output_mean):
         input, = ctx.saved_tensors
         grad_input = grad_output.clone()
         grad_input[input.ge(1)] = 0
