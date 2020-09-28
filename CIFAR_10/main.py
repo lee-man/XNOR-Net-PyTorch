@@ -37,7 +37,7 @@ def train(epoch):
         bin_op.binarization()
         
         # forwarding
-        data, target = Variable(data.cuda()), Variable(target.cuda())
+        data, target = data.cuda(), target.cuda()
         optimizer.zero_grad()
         output = model(data)
         
@@ -64,7 +64,7 @@ def test():
     correct = 0
     bin_op.binarization()
     for data, target in testloader:
-        data, target = Variable(data.cuda()), Variable(target.cuda())
+        data, target = data.cuda(), target.cuda()
                                     
         output = model(data)
         test_loss += criterion(output, target).data.item()
