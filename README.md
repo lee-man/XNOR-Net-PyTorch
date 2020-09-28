@@ -1,4 +1,12 @@
-# XNOR-Net-Pytorch
+# XNOR-NET
+This repo originates from [XNOR-NET-PyTorch](https://github.com/jiecaoyu/XNOR-Net-PyTorch) and [cv-tricks.com](https://github.com/legolas123/cv-tricks.com/tree/master/xnornet_plusplus). Several modifications are made for my own research purpose. I will list the modifications in details then.
+
+## Modifications
+- [ ] Add more networks for CIFAR-10 training.
+- [x] Wrap the code using [Pytorch Lightning](https://github.com/PyTorchLightning/pytorch-lightning).
+
+# XNOR-NET-PYTORCH
+
 This a PyTorch implementation of the [XNOR-Net](https://github.com/allenai/XNOR-Net). I implemented Binarized Neural Network (BNN) for:  
 
 | Dataset  | Network                  | Accuracy                    | Accuracy of floating-point |
