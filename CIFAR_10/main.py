@@ -24,10 +24,10 @@ def save_state(model, best_acc):
             'best_acc': best_acc,
             'state_dict': model.state_dict(),
             }
-    for key in state['state_dict'].keys():
-        if 'module' in key:
-            state['state_dict'][key.replace('module.', '')] = \
-                    state['state_dict'].pop(key)
+    # for key in state['state_dict'].keys():
+    #     if 'module' in key:
+    #         state['state_dict'][key.replace('module.', '')] = \
+    #                 state['state_dict'].pop(key)
     torch.save(state, 'models/ckpt.pth')
 
 def train(epoch):
