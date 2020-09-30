@@ -15,8 +15,8 @@ import torchvision
 import torchvision.transforms as transforms
 
 
-from models import nin
-from torch.autograd import Variable
+from models import nin, resnet_preact
+
 
 def save_state(model, best_acc):
     print('==> Saving model ...')
@@ -28,7 +28,7 @@ def save_state(model, best_acc):
     #     if 'module' in key:
     #         state['state_dict'][key.replace('module.', '')] = \
     #                 state['state_dict'].pop(key)
-    torch.save(state, 'models/nin.pth')
+    torch.save(state, 'models/ckpt.pth')
 
 def train(epoch):
     model.train()
@@ -98,8 +98,8 @@ if __name__=='__main__':
             help='set if only CPU is available')
     parser.add_argument('--data', default='/research/dept2/mli/data/cls',
             help='dataset path')
-    parser.add_argument('--arch', action='store', default='nin',
-            help='the architecture for the network: nin')
+    parser.add_argument('--arch', action='store', default='resnet',
+            help='the architecture for the network: resnet')
     parser.add_argument('--lr', action='store', default='0.01',
             help='the intial learning rate')
     parser.add_argument('--pretrained', action='store', default=None,
@@ -147,6 +147,8 @@ if __name__=='__main__':
     print('==> building model',args.arch,'...')
     if args.arch == 'nin':
         model = nin.Net()
+    elif args.arch == 'resnet':
+        model = resnet_preact.PreActResNet18()
     else:
         raise Exception(args.arch+' is currently not supported')
 
