@@ -138,7 +138,6 @@ class PreActResNet(nn.Module):
 
     def forward(self, x):
         out = self.conv1(x)
-        print(out.size())
         out = self.layer1(out)
         out = self.layer2(out)
         out = self.layer3(out)
