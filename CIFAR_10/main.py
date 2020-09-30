@@ -24,10 +24,10 @@ def save_state(model, best_acc):
             'best_acc': best_acc,
             'state_dict': model.state_dict(),
             }
-    # for key in state['state_dict'].keys():
-    #     if 'module' in key:
-    #         state['state_dict'][key.replace('module.', '')] = \
-    #                 state['state_dict'].pop(key)
+    for key in state['state_dict'].keys():
+        if 'module' in key:
+            state['state_dict'][key.replace('module.', '')] = \
+                    state['state_dict'].pop(key)
     torch.save(state, 'models/ckpt.pth')
 
 def train(epoch):
@@ -156,10 +156,10 @@ if __name__=='__main__':
     if not args.pretrained:
         print('==> Initializing model parameters ...')
         best_acc = 0
-        for m in model.modules():
-            if isinstance(m, nn.Conv2d):
-                m.weight.data.normal_(0, 0.05)
-                m.bias.data.zero_()
+        # for m in model.modules():
+        #     if isinstance(m, nn.Conv2d):
+        #         m.weight.data.normal_(0, 0.05)
+        #         m.bias.data.zero_()
     else:
         print('==> Load pretrained model form', args.pretrained, '...')
         pretrained_model = torch.load(args.pretrained)
